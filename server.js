@@ -6,12 +6,19 @@ const PORT = process.env.PORT || 3005;
 app.use(express.json());
 
 app.use(cors({
-    origin: "*", // This allows all origins
-    methods: ["GET", "POST", "OPTIONS"], // Ensure OPTIONS is allowed
-    allowedHeaders: ["Content-Type"], // Allow Content-Type header
-    preflightContinue: false, // Automatically handle preflight requests
-    optionsSuccessStatus: 204 // Set status for preflight requests to 204
+    origin: "*",
+    methods: ["GET", "POST", "OPTIONS"],
+    allowedHeaders: ["Content-Type"],
+    preflightContinue: false,
+    optionsSuccessStatus: 204
 }));
+
+app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    next();
+});
 
 
 app.post("/bfhl", (req, res) => {
