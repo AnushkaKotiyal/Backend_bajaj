@@ -5,9 +5,11 @@ const PORT = process.env.PORT || 3005;
 
 app.use(express.json());
 app.use(cors({
-    origin: "http://backend-bajaj-dfgd.vercel.app", 
-    methods: ["GET", "POST"],
-    allowedHeaders: ["Content-Type"]
+    origin: "https://backend-bajaj-dfgd.vercel.app", 
+    methods: ["GET", "POST"], 
+    allowedHeaders: ["Content-Type"],
+    preflightContinue: false,
+    optionsSuccessStatus: 204
 }));
 
 app.post("/bfhl", (req, res) => {
