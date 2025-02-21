@@ -2,9 +2,6 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 3005;
-
-app.use(express.json());
-
 app.use(cors({
     origin: "*",
     methods: ["GET", "POST", "OPTIONS"],
@@ -19,6 +16,9 @@ app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Headers", "Content-Type");
     next();
 });
+app.use(express.json());
+
+
 
 
 app.post("/bfhl", (req, res) => {
