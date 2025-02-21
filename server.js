@@ -2,20 +2,33 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 3005;
-app.use(cors({
-    origin: "*",
-    methods: ["GET", "POST", "OPTIONS"],
-    allowedHeaders: ["Content-Type"],
-    preflightContinue: false,
-    optionsSuccessStatus: 204
-}));
 
-app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-    next();
-});
+
+const allowedOrigins = [
+    'https://backend-bajaj-dfgd.vercel.app/',
+    'https://www.backend-bajaj-dfgd.vercel.app/'
+];
+
+const corsOptions = {
+    origin: (origin, callback) => {
+        if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    methods: ['GET', 'POST', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
+};
+
+
+
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
+
+
 app.use(express.json());
 
 
