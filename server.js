@@ -2,8 +2,6 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 3005;
-
-app.use(express.json());
 app.use(cors({
     origin: "https://backend-bajaj-dfgd.vercel.app", 
     methods: ["GET", "POST"], 
@@ -11,6 +9,8 @@ app.use(cors({
     preflightContinue: false,
     optionsSuccessStatus: 204
 }));
+app.use(express.json());
+
 
 app.post("/bfhl", (req, res) => {
     try {
