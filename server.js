@@ -7,7 +7,7 @@ app.use(express.json());
 
 app.use(cors({
     origin: "*", // This allows all origins
-    methods: ["GET", "POST"], // Allow GET and POST methods
+    methods: ["GET", "POST", "OPTIONS"], // Ensure OPTIONS is allowed
     allowedHeaders: ["Content-Type"], // Allow Content-Type header
     preflightContinue: false, // Automatically handle preflight requests
     optionsSuccessStatus: 204 // Set status for preflight requests to 204
