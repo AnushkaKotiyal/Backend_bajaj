@@ -5,13 +5,12 @@ const PORT = process.env.PORT || 3005;
 
 app.use(express.json());
 
-// Allow specific origin (frontend-bajaj-dfgd.vercel.app) to access this backend
 app.use(cors({
-    origin: "https://backend-bajaj-dfgd.vercel.app", // frontend origin
-    methods: ["GET", "POST"], // Allowed methods
-    allowedHeaders: ["Content-Type"], // Allow content-type header
-    preflightContinue: false, // Don't need to manually handle preflight requests
-    optionsSuccessStatus: 204 // Some legacy browsers expect a 204 status for successful preflight
+    origin: "*", // This allows all origins
+    methods: ["GET", "POST"], // Allow GET and POST methods
+    allowedHeaders: ["Content-Type"], // Allow Content-Type header
+    preflightContinue: false, // Automatically handle preflight requests
+    optionsSuccessStatus: 204 // Set status for preflight requests to 204
 }));
 
 
